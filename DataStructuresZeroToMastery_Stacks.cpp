@@ -50,6 +50,7 @@ public:
 
 			delete[]stack;
 			stack = new_stack;
+			capacity = capacity * 2;
 		}
 
 		stack[next_index++] = data;
