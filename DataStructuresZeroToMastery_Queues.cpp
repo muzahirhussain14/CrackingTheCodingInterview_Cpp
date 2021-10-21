@@ -42,12 +42,21 @@ public:
 		if (size == capacity)			// queue is full;
 		{
 			T* new_queue = new T[capacity * 2];
-			for (int i = 0; i < capacity; ++i)
+
+			int index = 0;
+			for (int i = front + 1; i < capacity; ++i)						// first move elements from 'front' to end
+				new_queue[index++] = queue[i];
+
+			if (back <= front)
 			{
-				new_queue[i] = queue[i];
+				for (int i = 0; i <= back; ++i)							// next move element from start to 'back'
+					new_queue[index++] = queue[i];
 			}
+
 			delete queue;
 			queue = new_queue;
+			front = -1;											// point 'front' to the start
+			back = capacity - 1;								// point 'back' to the end
 			capacity = capacity * 2;
 		}
 
@@ -60,6 +69,7 @@ public:
 	{
 		if (is_empty())
 		{
+			cout << "Empty";
 			return NULL;
 		}
 
@@ -72,6 +82,7 @@ public:
 	{
 		if (is_empty())
 		{
+			cout << "Empty";
 			return NULL;
 		}
 
@@ -97,6 +108,8 @@ int main()
 	myQueue.enqueue(1);
 	myQueue.enqueue(2);
 	myQueue.enqueue(3);
+	cout << myQueue.get_front() << "\n";	myQueue.dequeue();
+	cout << myQueue.get_front() << "\n";	myQueue.dequeue();
 	myQueue.enqueue(4);
 	myQueue.enqueue(5);
 	myQueue.enqueue(6);
@@ -134,6 +147,7 @@ int main()
 	cout << "Current Size: " << myQueue.get_size() << "\n";
 	*/
 
+	
 	// Test2
 	Queue <int> myQueue;
 	myQueue.enqueue(10);
@@ -156,7 +170,7 @@ int main()
 	myQueue.dequeue();
 	cout << myQueue.get_front() << "\n";
 	cout << myQueue.get_size() << "\n";
-
+	
 
 	cout << endl;
 	return 0;
