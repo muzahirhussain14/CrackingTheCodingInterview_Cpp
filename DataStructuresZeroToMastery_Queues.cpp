@@ -47,11 +47,8 @@ public:
 			for (int i = front + 1; i < capacity; ++i)						// first move elements from 'front' to end
 				new_queue[index++] = queue[i];
 
-			if (back <= front)
-			{
-				for (int i = 0; i <= back; ++i)							// next move element from start to 'back'
-					new_queue[index++] = queue[i];
-			}
+			for (int i = 0; i <= front; ++i)							// next move element from start to 'front'
+				new_queue[index++] = queue[i];
 
 			delete queue;
 			queue = new_queue;
